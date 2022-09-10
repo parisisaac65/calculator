@@ -92,47 +92,73 @@ nineBtn.addEventListener('click',() => {
     populateDisplay(displayValue);
 });
 
+
+let clicked = false; 
 // Add event listeners to all operator buttons 
 const addBtn = document.querySelector('.add-btn');
 addBtn.addEventListener('click', () => {
-    firstCompleteNum = +completeNum;
+    // firstCompleteNum = +completeNum;
+    firstCompleteNum = completeNum;
     operator = '+'; 
     clear();
-}); 
+});
 
+
+// addBtn.addEventListener('click', () => {
+//     operator = '+'; 
+//     if (clicked == false){
+//         firstCompleteNum = completeNum;
+//         clear();
+//         clicked = true; 
+//     } else {
+//         secondCompleteNum = completeNum;
+//         displaySolution();
+//         firstCompleteNum = solution; 
+//         solution='';
+//         clicked = false;
+//         clear(); 
+//     }
+// }); 
 const subtractBtn = document.querySelector('.subtract-btn');
 subtractBtn.addEventListener('click', () => {
-    firstCompleteNum = +completeNum;
+    // firstCompleteNum = +completeNum;
+    firstCompleteNum = completeNum;
     operator = '-'; 
     clear();
 });
 
 const multiplyBtn = document.querySelector('.multiply-btn');
 multiplyBtn.addEventListener('click', () => {
-    firstCompleteNum = +completeNum; 
+    // firstCompleteNum = +completeNum; 
+    firstCompleteNum = completeNum;
     operator = '*'
     clear();
 });
 
 const divideBtn = document.querySelector('.divide-btn');
 divideBtn.addEventListener('click',() => {
-    firstCompleteNum = +completeNum; 
+    // firstCompleteNum = +completeNum; 
+    firstCompleteNum = completeNum;
     operator = '/';
     clear();
 });
 
 
-//Add event listeners to all misc buttons 
 const clearBtn = document.querySelector('.clear-btn');
 clearBtn.addEventListener('click',clear);
 
 const equalBtn = document.querySelector('.equal-btn');
 equalBtn.addEventListener('click', () => {
-    secondCompleteNum = +completeNum; 
-    solution = operate(operator,firstCompleteNum,secondCompleteNum);
-    display.textContent = solution; 
+    // secondCompleteNum = +completeNum; 
+    secondCompleteNum = completeNum; 
+    displaySolution();
 }); 
 
+function displaySolution(){
+    solution = operate(operator,+firstCompleteNum,+secondCompleteNum);
+    display.textContent = solution; 
+    return solution; 
+}
 
 function populateDisplay(displayValue){
     // display.removeChild(defaultValue); 
