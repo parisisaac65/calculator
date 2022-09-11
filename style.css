@@ -13,10 +13,23 @@
     grid-row-gap: 1px;
     width: 400px;
     height: 600px;
+    font-size: 25px;
+    background-color:black;
+    color: white;
+    border:1px solid black;
+    border-radius: 3px;
 }
 
 
-.display {grid-area:1/1/2/5;}
+.display {
+    grid-area:1/1/2/5;
+    text-align:right;
+    padding-top: 45px;
+    padding-right: 15px;
+    background-color: rgb(141 141 141);
+    border:1px solid black;
+}
+
 .clear-btn {grid-area:2/1/3/2;}
 .neg-btn{grid-area:2/2/3/3;}
 .percent-btn{grid-area:2/3/3/4;}
@@ -36,3 +49,7 @@
 .zero-btn{grid-area:6/1/7/3;}
 .decimal-btn{grid-area:6/3/7/4;}
 .equal-btn{grid-area:6/4/7/5;}
+
+button {
+    font-size: 20px; 
+}
