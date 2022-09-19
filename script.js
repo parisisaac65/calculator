@@ -216,19 +216,32 @@ equalBtn.addEventListener('click', () => {
     displaySolution();
 }); 
 
+let solutionStr='';
+let index =''; 
+let decimalLength;
+
 function displaySolution(){
     if (operator == '/' && +secondCompleteNum === 0){
-        display.textContent = 'NOPE'; 
+        alert('NOPE'); 
+        // display.textContent = 'NOPE'; 
+        clearAll();
     }
     else { 
         solution = operate(operator,+firstCompleteNum,+secondCompleteNum);
+        solutionStr = solution.toString(); 
+        index = solutionStr.indexOf(".");
+        decimalLength = solutionStr.length - index - 1;
+
+        //if a decimal number has a decimal length greater than 7, round it to 7 
+        if (solution % 1 !== 0 && decimalLength > 7) {
+            solution = Number(solution).toFixed(7);
+        } 
         display.textContent = solution; 
         return solution; 
     }
 }
 
 function populateDisplay(displayValue){
-    // display.removeChild(defaultValue); 
     let txt = document.createTextNode(displayValue);
     currNum = txt.data; 
     display.appendChild(txt);
