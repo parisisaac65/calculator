@@ -7,6 +7,11 @@ let operator = '';
 let firstOperator = false;
 let secondOperator = false;
 let solution = '';
+let decimalClicked = false; 
+
+const display = document.querySelector('.display'); 
+
+//Add functions for all the basic math operators 
 
 const add = function(a,b){
     return a + b; 
@@ -31,9 +36,9 @@ const operate = function(sign, a, b){
     if(sign == '/') return divide(a,b);  
 };
 
-const display = document.querySelector('.display'); 
 
 //Add event listeners to all digit buttons (including decimal button)
+
 const zeroBtn = document.querySelector('.zero-btn');
 zeroBtn.addEventListener('click', () => {
     if (firstOperator == true && secondOperator == true){
@@ -126,10 +131,15 @@ nineBtn.addEventListener('click',() => {
 
 const decimalBtn = document.querySelector('.decimal-btn');
 decimalBtn.addEventListener('click',() => {
-    displayValue = '.';
-    populateDisplay(displayValue);
+    if (decimalClicked == false){
+        displayValue = '.';
+        populateDisplay(displayValue);
+        decimalClicked = true;
+    }
+    else {
+        return;
+    }
 });
-
 
 // Add event listeners to all operator buttons 
 
@@ -238,6 +248,7 @@ percentBtn.addEventListener('click',() => {
     display.textContent = completeNum; 
 });
 
+//Add functions to display solution, populate display, get completeNum, clear display and clear everything
 
 let solutionStr='';
 let index =''; 
@@ -252,7 +263,6 @@ function displaySolution(){
     else { 
         solution = operate(operator,+firstCompleteNum,+secondCompleteNum);
         solutionStr = solution.toString(); 
-        // solutionStr = solution?.toString() || ''; 
         index = solutionStr.indexOf(".");
         decimalLength = solutionStr.length - index - 1;
 
@@ -260,7 +270,8 @@ function displaySolution(){
         if (solution % 1 !== 0 && decimalLength > 7) {
             solution = Number(solution).toFixed(7);
         } 
-        display.textContent = solution; 
+        display.textContent = Number(solution);
+        // display.textContent = solution; 
         return solution; 
     }
 }
@@ -299,4 +310,5 @@ function clearAll(){
     firstOperator = false;
     secondOperator = false;
     solution = '';
+    decimalClicked = false;
 }
