@@ -211,9 +211,15 @@ clearBtn.addEventListener('click',clearAll);
 
 const equalBtn = document.querySelector('.equal-btn');
 equalBtn.addEventListener('click', () => {
-    // secondCompleteNum = +completeNum; 
-    secondCompleteNum = completeNum; 
-    displaySolution();
+    if (!firstCompleteNum) {
+        display.textContent = 'ERROR';
+    }
+    else {
+        // secondCompleteNum = +completeNum; 
+        secondCompleteNum = completeNum; 
+        displaySolution();
+    }
+
 }); 
 
 let solutionStr='';
