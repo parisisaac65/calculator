@@ -217,9 +217,14 @@ equalBtn.addEventListener('click', () => {
 }); 
 
 function displaySolution(){
-    solution = operate(operator,+firstCompleteNum,+secondCompleteNum);
-    display.textContent = solution; 
-    return solution; 
+    if (operator == '/' && +secondCompleteNum === 0){
+        display.textContent = 'NOPE'; 
+    }
+    else { 
+        solution = operate(operator,+firstCompleteNum,+secondCompleteNum);
+        display.textContent = solution; 
+        return solution; 
+    }
 }
 
 function populateDisplay(displayValue){
@@ -243,13 +248,6 @@ function clearDisplay(){
     // display.appendChild(defaultValue);
     completeNum = '';
 }
-
-function clearDisplayTwo(){
-    while(display.hasChildNodes()){
-        display.removeChild(display.firstChild); 
-    }
-}
-
 
 function clearAll(){
     while(display.hasChildNodes()){
