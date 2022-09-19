@@ -124,6 +124,11 @@ nineBtn.addEventListener('click',() => {
     populateDisplay(displayValue);
 });
 
+const decimalBtn = document.querySelector('.decimal-btn');
+decimalBtn.addEventListener('click',() => {
+    displayValue = '.';
+    populateDisplay(displayValue);
+});
 
 
 // Add event listeners to all operator buttons 
@@ -233,6 +238,8 @@ percentBtn.addEventListener('click',() => {
     completeNum = completeNum / 100;
     display.textContent = completeNum; 
 });
+
+
 
 let solutionStr='';
 let index =''; 
