@@ -222,6 +222,18 @@ equalBtn.addEventListener('click', () => {
 
 }); 
 
+const negBtn = document.querySelector('.neg-btn');
+negBtn.addEventListener('click',() => {
+    completeNum = Math.abs(completeNum) * -1; 
+    display.textContent = completeNum;
+});
+
+const percentBtn = document.querySelector('.percent-btn');
+percentBtn.addEventListener('click',() => {
+    completeNum = completeNum / 100;
+    display.textContent = completeNum; 
+});
+
 let solutionStr='';
 let index =''; 
 let decimalLength;
@@ -234,7 +246,8 @@ function displaySolution(){
     }
     else { 
         solution = operate(operator,+firstCompleteNum,+secondCompleteNum);
-        solutionStr = solution.toString(); 
+        // solutionStr = solution.toString(); 
+        solutionStr = solution?.toString() || ''; 
         index = solutionStr.indexOf(".");
         decimalLength = solutionStr.length - index - 1;
 
