@@ -4,6 +4,8 @@ let currNum = '';
 let firstCompleteNum = '';
 let secondCompleteNum = ''; 
 let operator = '';
+let firstOperator = false;
+let secondOperator = false;
 let solution = '';
 
 const add = function(a,b){
@@ -34,118 +36,178 @@ const display = document.querySelector('.display');
 //Add event listeners to all digit buttons 
 const zeroBtn = document.querySelector('.zero-btn');
 zeroBtn.addEventListener('click', () => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 0;
     populateDisplay(displayValue); 
 }); 
 
 const oneBtn = document.querySelector('.one-btn');
 oneBtn.addEventListener('click', () => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 1;
     populateDisplay(displayValue); 
 }); 
 
 const twoBtn = document.querySelector('.two-btn');
 twoBtn.addEventListener('click',() => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 2;
     populateDisplay(displayValue);
 });
 
 const threeBtn = document.querySelector('.three-btn');
 threeBtn.addEventListener('click',() => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 3;
     populateDisplay(displayValue);
 });
 
 const fourBtn = document.querySelector('.four-btn');
 fourBtn.addEventListener('click',() => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 4;
     populateDisplay(displayValue);
 });
 
 const fiveBtn = document.querySelector('.five-btn');
 fiveBtn.addEventListener('click',() => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 5;
     populateDisplay(displayValue);
 });
 
 const sixBtn = document.querySelector('.six-btn');
 sixBtn.addEventListener('click',() => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 6;
     populateDisplay(displayValue);
 });
 
 const sevenBtn = document.querySelector('.seven-btn');
 sevenBtn.addEventListener('click',() => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 7;
     populateDisplay(displayValue);
 });
 
 const eightBtn = document.querySelector('.eight-btn');
 eightBtn.addEventListener('click',() => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 8;
     populateDisplay(displayValue);
 });
 
 const nineBtn = document.querySelector('.nine-btn');
 nineBtn.addEventListener('click',() => {
+    if (firstOperator == true && secondOperator == true){
+        clearDisplay();
+    }
     displayValue = 9;
     populateDisplay(displayValue);
 });
 
 
-let clicked = false; 
+
 // Add event listeners to all operator buttons 
 const addBtn = document.querySelector('.add-btn');
 addBtn.addEventListener('click', () => {
-    // firstCompleteNum = +completeNum;
-    firstCompleteNum = completeNum;
-    operator = '+'; 
-    clear();
+    //if the operator button is pressed for the first time, we must set the firstCompleteNum = completeNum
+    if (!firstCompleteNum) {
+        firstCompleteNum = completeNum;
+        operator = '+';
+        clearDisplay();
+        firstOperator = true; 
+    }
+    //if the operator button is pressed for the second time, we must set the secondCompleteNum = completeNum, 
+    // evaluate firstCompleteNum and secondCompleteNum, display the solution and then set 
+    // firstCompleteNum = solution
+    else if (firstCompleteNum){
+        secondCompleteNum = completeNum;
+        displaySolution();
+        console.log(solution); 
+        firstCompleteNum = solution;
+        operator = '+'; 
+        secondOperator = true; 
+    }
 });
 
 
-// addBtn.addEventListener('click', () => {
-//     operator = '+'; 
-//     if (clicked == false){
-//         firstCompleteNum = completeNum;
-//         clear();
-//         clicked = true; 
-//     } else {
-//         secondCompleteNum = completeNum;
-//         displaySolution();
-//         firstCompleteNum = solution; 
-//         solution='';
-//         clicked = false;
-//         clear(); 
-//     }
-// }); 
 const subtractBtn = document.querySelector('.subtract-btn');
 subtractBtn.addEventListener('click', () => {
-    // firstCompleteNum = +completeNum;
-    firstCompleteNum = completeNum;
-    operator = '-'; 
-    clear();
+    if (!firstCompleteNum) {
+        firstCompleteNum = completeNum;
+        operator = '-';
+        clearDisplay();
+        firstOperator = true; 
+    }
+    else if (firstCompleteNum){
+        secondCompleteNum = completeNum;
+        displaySolution();
+        firstCompleteNum = solution;
+        console.log(solution); 
+        operator = '-'; 
+        secondOperator = true; 
+    }
 });
 
 const multiplyBtn = document.querySelector('.multiply-btn');
 multiplyBtn.addEventListener('click', () => {
-    // firstCompleteNum = +completeNum; 
-    firstCompleteNum = completeNum;
-    operator = '*'
-    clear();
+    if (!firstCompleteNum) {
+        firstCompleteNum = completeNum;
+        operator = '*';
+        clearDisplay();
+        firstOperator = true; 
+    }
+    else if (firstCompleteNum){
+        secondCompleteNum = completeNum;
+        displaySolution();
+        firstCompleteNum = solution;
+        console.log(solution); 
+        operator = '*'; 
+        secondOperator = true; 
+    }
+
 });
 
 const divideBtn = document.querySelector('.divide-btn');
 divideBtn.addEventListener('click',() => {
-    // firstCompleteNum = +completeNum; 
-    firstCompleteNum = completeNum;
-    operator = '/';
-    clear();
+    if (!firstCompleteNum) {
+        firstCompleteNum = completeNum;
+        operator = '/';
+        clearDisplay();
+        firstOperator = true; 
+    }
+    else if (firstCompleteNum){
+        secondCompleteNum = completeNum;
+        displaySolution();
+        console.log(solution); 
+        firstCompleteNum = solution;
+        operator = '/'; 
+        secondOperator = true; 
+    }
 });
 
 
 const clearBtn = document.querySelector('.clear-btn');
-clearBtn.addEventListener('click',clear);
+clearBtn.addEventListener('click',clearAll);
 
 const equalBtn = document.querySelector('.equal-btn');
 equalBtn.addEventListener('click', () => {
@@ -173,7 +235,7 @@ function getCompleteNum (){
     return completeNum; 
 }
 
-function clear(){
+function clearDisplay(){
     while(display.hasChildNodes()){
         display.removeChild(display.firstChild); 
     }
@@ -182,4 +244,24 @@ function clear(){
     completeNum = '';
 }
 
+function clearDisplayTwo(){
+    while(display.hasChildNodes()){
+        display.removeChild(display.firstChild); 
+    }
+}
 
+
+function clearAll(){
+    while(display.hasChildNodes()){
+        display.removeChild(display.firstChild); 
+    }
+    displayValue = '';
+    completeNum = '';
+    currNum = ''; 
+    firstCompleteNum = '';
+    secondCompleteNum = ''; 
+    operator = '';
+    firstOperator = false;
+    secondOperator = false;
+    solution = '';
+}
