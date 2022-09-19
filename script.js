@@ -33,7 +33,7 @@ const operate = function(sign, a, b){
 
 const display = document.querySelector('.display'); 
 
-//Add event listeners to all digit buttons 
+//Add event listeners to all digit buttons (including decimal button)
 const zeroBtn = document.querySelector('.zero-btn');
 zeroBtn.addEventListener('click', () => {
     if (firstOperator == true && secondOperator == true){
@@ -132,18 +132,18 @@ decimalBtn.addEventListener('click',() => {
 
 
 // Add event listeners to all operator buttons 
+
 const addBtn = document.querySelector('.add-btn');
 addBtn.addEventListener('click', () => {
-    //if the operator button is pressed for the first time, we must set the firstCompleteNum = completeNum
+    // if the operator button is pressed for the first time, set the firstCompleteNum = completeNum
     if (!firstCompleteNum) {
         firstCompleteNum = completeNum;
         operator = '+';
         clearDisplay();
         firstOperator = true; 
     }
-    //if the operator button is pressed for the second time, we must set the secondCompleteNum = completeNum, 
-    // evaluate firstCompleteNum and secondCompleteNum, display the solution and then set 
-    // firstCompleteNum = solution
+    // if the operator button is pressed for the second time, set the secondCompleteNum = completeNum, 
+    // evaluate firstCompleteNum and secondCompleteNum, display the solution and then set firstCompleteNum = solution
     else if (firstCompleteNum){
         secondCompleteNum = completeNum;
         displaySolution();
@@ -153,7 +153,6 @@ addBtn.addEventListener('click', () => {
         secondOperator = true; 
     }
 });
-
 
 const subtractBtn = document.querySelector('.subtract-btn');
 subtractBtn.addEventListener('click', () => {
@@ -210,6 +209,7 @@ divideBtn.addEventListener('click',() => {
     }
 });
 
+// Add event listeners to clear, equal, negative, and percent buttons
 
 const clearBtn = document.querySelector('.clear-btn');
 clearBtn.addEventListener('click',clearAll);
@@ -224,7 +224,6 @@ equalBtn.addEventListener('click', () => {
         secondCompleteNum = completeNum; 
         displaySolution();
     }
-
 }); 
 
 const negBtn = document.querySelector('.neg-btn');
@@ -240,7 +239,6 @@ percentBtn.addEventListener('click',() => {
 });
 
 
-
 let solutionStr='';
 let index =''; 
 let decimalLength;
@@ -253,8 +251,8 @@ function displaySolution(){
     }
     else { 
         solution = operate(operator,+firstCompleteNum,+secondCompleteNum);
-        // solutionStr = solution.toString(); 
-        solutionStr = solution?.toString() || ''; 
+        solutionStr = solution.toString(); 
+        // solutionStr = solution?.toString() || ''; 
         index = solutionStr.indexOf(".");
         decimalLength = solutionStr.length - index - 1;
 
