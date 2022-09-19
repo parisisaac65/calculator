@@ -15,8 +15,8 @@
     height: 600px;
     font-size: 25px;
     background-color:black;
-    color: white;
-    border:1px solid black;
+    color: #403d3d;
+    border:5px solid black;
     border-radius: 3px;
 }
 
@@ -24,9 +24,10 @@
 .display {
     grid-area:1/1/2/5;
     text-align:right;
-    padding-top: 45px;
+    padding-top: 20px;
     padding-right: 15px;
-    background-color: rgb(141 141 141);
+    font-size: 50px;
+    background-color: #faebd7d6;
     border:1px solid black;
 }
 
@@ -51,5 +52,18 @@
 .equal-btn{grid-area:6/4/7/5;}
 
 button {
-    font-size: 20px; 
+    font-size: 20px;
+    border-radius:5px;
+}
+
+.operator{
+    background-color:#ff9800e3;
+}
+
+.misc{
+    background-color: #ff0000a1;
+}
+
+.num{
+    background-color: antiquewhite;
 }
